@@ -1,0 +1,12 @@
+- project:
+    name: software-factory/firehooks
+    check:
+      jobs:
+        - tox-py27
+        # - tox-py35
+        - linters
+    gate:
+      jobs:
+        - tox-py27
+        - linters
+        # - tox-py35

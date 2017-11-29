@@ -1,0 +1,13 @@
+[Unit]
+Description=Run Firehooks, a Software Factory or OpenStack-style Firehose consumer used to trigger complex actions on specific events
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/firehooks -c /etc/firehooks/
+Restart=always
+User=firehooks
+Group=firehooks
+
+[Install]
+WantedBy=multi-user.target

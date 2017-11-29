@@ -1,0 +1,43 @@
+logging:
+  level: INFO
+broker:
+  url: softwarefactory-project.io
+  port: 1883
+# WIP
+projects:
+  - software-factory:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
+  - DLRN:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
+  - repoxplorer:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
+  - config:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
+  - rdopkg:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
+  - SF_talks:
+      TaigaIO:
+        project: morucci-software-factory
+        auth:
+          user: sfbot0
+          password: XXX
