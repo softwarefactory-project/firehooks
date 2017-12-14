@@ -1,8 +1,8 @@
 %global         sum Firehooks, a Software Factory or OpenStack-style Firehose consumer used to trigger complex actions on specific events
 
 Name:           firehooks
-Version: 0.0.0
-Release:        1%{?dist}
+Version:        0.0.0
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        ASL 2.0
@@ -14,16 +14,19 @@ BuildArch:      noarch
 Requires:       python-paho-mqtt
 Requires:       PyYAML
 Requires:       python-taiga
+Requires:       python-requests
 
 Buildrequires:  python2-devel
 Buildrequires:  python-setuptools
 Buildrequires:  python2-pbr
 Buildrequires:  python-nose
-Buildrequires:	python-mock
+Buildrequires:  python-mock
 Buildrequires:  git
-Buildrequires:	PyYAML
-Buildrequires:	python-paho-mqtt
+Buildrequires:  PyYAML
+Buildrequires:  python-paho-mqtt
 BuildRequires:  python-taiga
+BuildRequires:  python-requests
+BuildRequires:  python-dateutil
 
 %description
 an MQTT bus consumer used to trigger complex actions on specific events
@@ -68,5 +71,8 @@ exit 0
 %config(noreplace) %{_sysconfdir}/*
 
 %changelog
+* Thu Dec 14 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.0-2
+- Add missing request build requirement
+
 * Wed Nov 29 2017 Matthieu Huin <mhuin@redhat.com> - 0.0.0-1
 - Initial package
