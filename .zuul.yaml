@@ -2,17 +2,19 @@
     name: software-factory/firehooks
     check:
       jobs:
+        - sf-rpm-build
         - tox-py27
-        - tox-py35-f27
+        - tox-py35-f27:
+            voting: false
         - linters
     gate:
       jobs:
         - tox-py27
         - linters
-        - tox-py35-f27
+        - tox-py35-f27:
+            voting: false
         - sf-rpm-publish:
             dependencies:
               - sf-rpm-build
               - tox-py27
               - linters
-              - tox-py35-f27

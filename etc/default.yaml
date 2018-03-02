@@ -1,43 +1,26 @@
 logging:
-  level: INFO
+  level: DEBUG
 broker:
-  url: softwarefactory-project.io
+  url: sftests.com
   port: 1883
-# WIP
-projects:
-  - software-factory:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
-  - DLRN:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
-  - repoxplorer:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
-  - config:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
-  - rdopkg:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
-  - SF_talks:
-      TaigaIO:
-        project: morucci-software-factory
-        auth:
-          user: sfbot0
-          password: XXX
+
+software-factory:
+  auth:
+    user: SF_SERVICE_USER
+    password: password
+  url: https://sftests.com
+  managesf: http://managesf.sftests.com:20001
+  gerrit: http://managesf.sftests.com:8000/r/a/
+
+# Hooks configuration
+hooks:
+  SFTaigaIO:
+      # project is a python regular expression to apply on the project field of a change
+    - project: myCoolProject|myOtherCoolProject
+      auth:
+        username: taigabot
+        password: XXX
+      taiga_project: my_cool_project
+  # Actually no config needed here yet
+  SFZuul:
+    - {}

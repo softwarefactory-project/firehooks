@@ -4,7 +4,7 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/firehooks
+ExecStart=/usr/bin/firehooks -c /etc/firehooks/default.yaml
 Restart=always
 User=firehooks
 Group=firehooks

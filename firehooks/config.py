@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2017 Red Hat
+# Copyright (C) 2018 Red Hat
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -16,14 +16,10 @@
 # under the License.
 
 
-from unittest import TestCase
-
-from firehooks import firehooks
+import yaml
 
 
-class TestHook(TestCase):
-    def test_hook_regex(self):
-        h = firehooks.Hook()
-        self.assertTrue('57' in h.regex.findall('issue: 57'))
-        self.assertEqual(['57', '32'],
-                         h.regex.findall('issue: 57\ntask: 32'))
+class Config(object):
+    def __init__(self, config_path):
+        with open(config_path) as _config:
+            self.config = yaml.load(_config)
