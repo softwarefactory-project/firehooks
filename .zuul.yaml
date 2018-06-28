@@ -4,17 +4,28 @@
       jobs:
         - sf-rpm-build
         - tox-py27
-        - tox-py35-f27:
+        - tox-py35:
+            nodeset:
+              nodes:
+                - name: testrunner
+                  label: runc-fedora
             voting: false
         - linters
     gate:
       jobs:
         - tox-py27
         - linters
-        - tox-py35-f27:
+        - tox-py35:
+            nodeset:
+              nodes:
+                - name: testrunner
+                  label: runc-fedora
             voting: false
-        - sf-rpm-publish:
+        - wait-for-changes-ahead:
             dependencies:
               - sf-rpm-build
               - tox-py27
               - linters
+        - sf-rpm-publish:
+            dependencies:
+              - wait-for-changes-ahead
