@@ -3,4 +3,3 @@ pyyaml
 python-taiga
 requests
 stevedore
--e git+https://github.com/softwarefactory-project/pysflib.git#egg=pysflib

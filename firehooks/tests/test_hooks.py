@@ -233,33 +233,21 @@ class TestTaigaHook(TestCase):
 
 class TestZuulHook(TestCase):
     def test_autohold(self):
-        with mock.patch('firehooks.softwarefactory') as _SF:
-            Z = zuul.SFZuulAutoholdHook()
-            Z.SF = _SF
-            msg = FakeMessage(
-                topic='gerrit/myproject/comment-added',
-                payload=json.dumps(
-                    {"change": {"commitMessage": "blah TG-1337",
-                                "subject": "a_cool_change",
-                                "owner": {"username": "Johnny"},
-                                "number": 12,
-                                "url": "http://some.url",
-                                "id": "I12345"},
-                     "patchSet": {"number": 3},
-                     "comment": "hehe\n\n"
-                                "autohold run-tests on local",
-                     "author": {"username": "Mark"}}
-                )
+        Z = zuul.SFZuulAutoholdHook()
+        msg = FakeMessage(
+            topic='gerrit/myproject/comment-added',
+            payload=json.dumps(
+                {"change": {"commitMessage": "blah TG-1337",
+                            "subject": "a_cool_change",
+                            "owner": {"username": "Johnny"},
+                            "number": 12,
+                            "url": "http://some.url",
+                            "id": "I12345"},
+                 "patchSet": {"number": 3},
+                 "comment": "hehe\n\n"
+                            "autohold run-tests on local",
+                 "author": {"username": "Mark"}}
             )
-            self.assertTrue(Z.filter(msg))
-            _SF.post_as.return_value = FakeResponse(200)
-            Z(msg)
-            _SF.post_as.assert_called_with(
-                "Mark",
-                "/v2/zuul/admin/local/myproject/run-tests/autohold",
-                json={'change': 12,
-                      'reason': 'Requested by Mark',
-                      'count': 1},
-                headers={'Content-Type': 'application/json'})
-            _SF.comment_on_review.assert_called_with(
-                "I12345", 3, "Autohold successfully set.")
+        )
+        self.assertTrue(Z.filter(msg))
+        Z(msg)

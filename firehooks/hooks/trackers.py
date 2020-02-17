@@ -38,7 +38,7 @@ class BaseIssueTrackerHook(base.GerritHook):
         super(BaseIssueTrackerHook, self).__init__(**config)
         self.project_regex = re.compile(config['project'], re.I)
         self.tracker_regex = re.compile(
-            'Closes: #?(?P<issue>\d+)', re.I)
+            r'Closes: #?(?P<issue>\d+)', re.I)
 
     def filter(self, msg):
         if super(BaseIssueTrackerHook, self).filter(msg):
@@ -77,7 +77,7 @@ class TaigaItemUpdateHook(BaseIssueTrackerHook):
                       password=config['auth']['password'])
         self.project = self.api.projects.get_by_slug(config['taiga_project'])
         self.tracker_regex = re.compile(
-            'TG-(?P<issue>\d+)\s*(?P<status>#[a-zA-Z-]+)?', re.I)
+            r'TG-(?P<issue>\d+)\s*(?P<status>#[a-zA-Z-]+)?', re.I)
 
     def find_by_ref(self, ref):
         try:

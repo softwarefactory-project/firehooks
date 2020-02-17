@@ -21,7 +21,6 @@ import argparse
 import logging
 from stevedore import driver
 from . import config
-from .softwarefactory import SoftwareFactory
 import sys
 
 
@@ -33,7 +32,6 @@ def load_hook(conf, name, SF):
                                       name=name,
                                       invoke_on_load=False).driver
     hook = hook_class(**conf)
-    hook.SF = SF
     LOGGER.debug('Hook "%s" loaded' % name)
     return hook
 
@@ -90,15 +88,12 @@ def main():
     broker = conf.config.get('broker', {}).get('url')
     port = conf.config.get('broker', {}).get('port')
 
-    # SF
-    SF = SoftwareFactory(**conf.config['software-factory'])
-
     # hooks
     hooks = []
     hks_conf = conf.config.get('hooks', {})
     for hook_name in hks_conf:
         for hook_config in hks_conf[hook_name]:
-            h = load_hook(hook_config, hook_name, SF)
+            h = load_hook(hook_config, hook_name)
             hooks.append(h)
 
     # Setup the MQTT client

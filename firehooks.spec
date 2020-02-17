@@ -2,7 +2,7 @@
 
 Name:           firehooks
 Version:        0.0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        %{sum}
 
 License:        ASL 2.0
@@ -11,24 +11,22 @@ Source0: HEAD.tgz
 
 BuildArch:      noarch
 
-Requires:       python-paho-mqtt
-Requires:       PyYAML
-Requires:       python-taiga
-Requires:       python-requests
-Requires:       python2-pysflib
+Requires:       python3-paho-mqtt
+Requires:       python3-pyyaml
+Requires:       python3-taiga
+Requires:       python3-requests
 
-Buildrequires:  python2-devel
-Buildrequires:  python-setuptools
-Buildrequires:  python2-pbr
-Buildrequires:  python-nose
-Buildrequires:  python-mock
+Buildrequires:  python3-devel
+Buildrequires:  python3-setuptools
+Buildrequires:  python3-pbr
+Buildrequires:  python3-nose
+Buildrequires:  python3-mock
 Buildrequires:  git
-Buildrequires:  PyYAML
-Buildrequires:  python-paho-mqtt
-BuildRequires:  python-taiga
-BuildRequires:  python-requests
-BuildRequires:  python-dateutil
-BuildRequires:  python2-pysflib
+Buildrequires:  python3-pyyaml
+Buildrequires:  python3-paho-mqtt
+BuildRequires:  python3-taiga
+BuildRequires:  python3-requests
+BuildRequires:  python3-dateutil
 
 %description
 an MQTT bus consumer used to trigger complex actions on specific events
@@ -39,10 +37,10 @@ an MQTT bus consumer used to trigger complex actions on specific events
 %build
 # init git for pbr
 git init
-%{__python2} setup.py build
+%{__python3} setup.py build
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%{__python3} setup.py install --skip-build --root %{buildroot}
 install -p -D -m 644 firehooks.service %{buildroot}/%{_unitdir}/%{name}.service
 mkdir -p %{buildroot}/%{_sysconfdir}/
 install -p -D -m 644 etc/default.yaml %{buildroot}/%{_sysconfdir}/%{name}/default.yaml
@@ -67,12 +65,15 @@ exit 0
 %systemd_postun %{name}.service
 
 %files -n firehooks
-%{python2_sitelib}/*
+%{python3_sitelib}/*
 %{_bindir}/*
 %{_unitdir}/*
 %config(noreplace) %{_sysconfdir}/*
 
 %changelog
+* Mon Feb 17 2020 Matthieu Huin <mhuin@redhat.com> - 0.0.0-4
+- Move to python3
+
 * Tue Mar 27 2018 Matthieu Huin <mhuin@redhat.com> - 0.0.0-3
 - Reflect code refactor
 

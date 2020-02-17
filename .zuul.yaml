@@ -3,7 +3,8 @@
     check:
       jobs:
         - sf-rpm-build
-        - tox-py27
+        - tox-py36:
+            nodeset: fedora-latest-runc
         - tox-py35:
             nodeset:
               nodes:
@@ -13,7 +14,8 @@
         - linters
     gate:
       jobs:
-        - tox-py27
+        - tox-py36:
+            nodeset: fedora-latest-runc
         - linters
         - tox-py35:
             nodeset:
@@ -24,7 +26,7 @@
         - wait-for-changes-ahead:
             dependencies:
               - sf-rpm-build
-              - tox-py27
+              - tox-py36
               - linters
         - sf-rpm-publish:
             dependencies:
