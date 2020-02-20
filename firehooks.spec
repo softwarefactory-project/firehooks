@@ -2,7 +2,7 @@
 
 Name:           firehooks
 Version:        0.0.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        %{sum}
 
 License:        ASL 2.0
@@ -15,6 +15,7 @@ Requires:       python3-paho-mqtt
 Requires:       python3-pyyaml
 Requires:       python3-taiga
 Requires:       python3-requests
+Requires:       python3-stevedore
 
 Buildrequires:  python3-devel
 Buildrequires:  python3-setuptools
@@ -71,6 +72,9 @@ exit 0
 %config(noreplace) %{_sysconfdir}/*
 
 %changelog
+* Thu Feb 20 2020 Matthieu Huin <mhuin@redhat.com> - 0.0.0-5
+- Fix missing stevedore dependency
+
 * Mon Feb 17 2020 Matthieu Huin <mhuin@redhat.com> - 0.0.0-4
 - Move to python3
 
