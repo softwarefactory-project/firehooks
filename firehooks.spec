@@ -2,7 +2,7 @@
 
 Name:           firehooks
 Version:        0.0.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        %{sum}
 
 License:        ASL 2.0
@@ -72,6 +72,9 @@ exit 0
 %config(noreplace) %{_sysconfdir}/*
 
 %changelog
+* Thu Feb 20 2020 Matthieu Huin <mhuin@redhat.com> - 0.0.0-6
+- Fix typo in load_hooks
+
 * Thu Feb 20 2020 Matthieu Huin <mhuin@redhat.com> - 0.0.0-5
 - Fix missing stevedore dependency
 

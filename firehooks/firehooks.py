@@ -27,7 +27,7 @@ import sys
 LOGGER = logging.getLogger('firehooks')
 
 
-def load_hook(conf, name, SF):
+def load_hook(conf, name):
     hook_class = driver.DriverManager(namespace='firehooks.hooks',
                                       name=name,
                                       invoke_on_load=False).driver
