@@ -4,7 +4,7 @@
       jobs:
         - sf-rpm-build
         - tox-py36:
-            nodeset: fedora-latest-runc
+            nodeset: fedora-latest-pod
         - tox-py35:
             nodeset:
               nodes:
@@ -15,7 +15,7 @@
     gate:
       jobs:
         - tox-py36:
-            nodeset: fedora-latest-runc
+            nodeset: fedora-latest-pod
         - linters
         - tox-py35:
             nodeset:
