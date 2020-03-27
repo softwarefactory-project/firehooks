@@ -9,7 +9,7 @@
             nodeset:
               nodes:
                 - name: testrunner
-                  label: runc-fedora
+                  label: pod-fedora-31
             voting: false
         - linters
     gate:
@@ -21,7 +21,7 @@
             nodeset:
               nodes:
                 - name: testrunner
-                  label: runc-fedora
+                  label: pod-fedora-31
             voting: false
         - wait-for-changes-ahead:
             dependencies:
